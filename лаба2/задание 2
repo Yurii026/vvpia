@@ -1,0 +1,30 @@
+#include <iostream>
+#include <iomanip>
+#include <cmath>
+
+int main() {
+    setlocale(LC_ALL, "ru");
+    // Объявляем переменные типа double.
+    double x1, y1; // Координаты первой точки
+    double x2, y2; // Коорлинаты второй точки
+
+    std::cout << "Введите координаты первой точки (x1 y1): ";  // Выводим приглашение для пользователя
+    std::cin >> x1 >> y1;  // Считываем значение с клавиатуры в переменные
+
+    std::cout << "Введите координаты второй точки (x2 y2): "; // Выводим приглашение для пользователя
+    std::cin >> x2 >> y2; // Считываем значение с клавиатуры в переменные
+
+    double dx = x2 - x1; // вычисляем х
+    double dy = y2 - y1; // вычисляем у
+
+    double sumSquares = static_cast<double>(dx * dx) + static_cast<double>(dy * dy); // Вычисляем по формуле
+
+    double distance = std::sqrt(sumSquares); // Вычисляем по формуле
+
+    std::cout << std::fixed << std::setprecision(4);
+    std::cout << "\nТочка A(" << x1 << "; " << y1 << ")" << std::endl; // Вывод координат точки А
+    std::cout << "Точка B(" << x2 << "; " << y2 << ")" << std::endl; // Вывод координат точки В
+    std::cout << "Расстояние между точками = " << distance << std::endl; // Вывод ответа
+
+    return 0; // Успешное завершение программы
+}
