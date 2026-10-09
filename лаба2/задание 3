@@ -96,30 +96,6 @@ int main() {  // главная функция
     std::cout << "Погрешность double:  " // подпись
         << std::fabs(100.0 - accD) << "\n"; // |100 - accD|
 
-    // Усечение vs округление 
-    std::cout << "\n--- Усечение (truncation) vs Округление (rounding) ---\n"; // подзаголовок
-    std::cout << std::setprecision(4);   // 4 знака после запятой
-    double values[] = { 3.1, 3.5, 3.9, -3.1, -3.5, -3.9 }; // массив тестовых значений
-
-    std::cout << std::setw(8)  << "Знач."  // заголовок столбца 1, ширина 8
-        << std::setw(14) << "Усечение" // заголовок столбца 2, ширина 14
-        << std::setw(16) << "Округление" << "\n"; // заголовок столбца 3, ширина 16
-
-    for (double v : values) { // перебираем все значения массива
-    int truncated = static_cast<int>(v);  // усечение: просто отбрасываем дробную часть
-    int rounded = static_cast<int>(std::round(v));  // округление: до ближайшего целого
-
-    std::cout << std::setw(8)  << v                          // выводим исходное значение
-    << std::setw(14) << truncated                  // выводим усечённое
-    << std::setw(16) << rounded << "\n";           // выводим округлённое
-    }
-
-    // Граничные значения типов
-    std::cout << "\n--- Граничные значения ---\n"; // подзаголовок
-    std::cout<< "INT_MAX = " << std::numeric_limits<int>::max() << "\n"; // максимум int (2147483647)
-    std::cout << "INT_MIN = " << std::numeric_limits<int>::min() << "\n"; // минимум int (-2147483648)
-    std::cout << "float  eps = " << std::numeric_limits<float>::epsilon()  << "\n"; // машинный эпсилон float
-    std::cout << "double eps = " << std::numeric_limits<double>::epsilon() << "\n"; // машинный эпсилон double
 
     return 0; // успешное завершение
 }
