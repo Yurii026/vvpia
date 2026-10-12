@@ -1,0 +1,14 @@
+#include <iostream>
+
+int main(){
+    int variable();
+    std::cout << "Введите число" << std::endl;
+    std::cin >> variable
+    if ((variable % 5 == 0) && (variable % 3 == 0)){
+        std::cout << "Число кратно 15" << std::endl
+    }
+    else{
+        std::cout << "Число не кратно 15" << std::endl
+    }
+return 0
+}
