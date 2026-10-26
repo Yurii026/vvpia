@@ -1,0 +1,72 @@
+#include <iostream>
+#include <limits>
+
+int main() {
+    setlocale(LC_ALL, "ru");
+    int age;
+    int day;
+
+    std::cout << "--- ПОВЫШЕННЫЙ УРОВЕНЬ (Билетная система) ---\n";
+
+    // 1. Безопасный ввод возраста
+    while (true) {
+        std::cout << "Введите возраст посетителя: ";
+        std::cin >> age;
+
+        if (std::cin.fail()) {
+            std::cout << "ОШИБКА: Некорректный формат! Введите целое число.\n";
+            std::cin.clear();
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+        }
+        else if (age < 0 || age > 130) {
+            std::cout << "ОШИБКА: Возраст не может быть отрицательным или больше 130!\n";
+        }
+        else {
+            break;
+        }
+    }
+
+    // 2. Безопасный ввод дня недели
+    while (true) {
+        std::cout << "Введите день недели (1 - Понедельник ... 7 - Воскресенье): ";
+        std::cin >> day;
+
+        if (std::cin.fail()) {
+            std::cout << "ОШИБКА: Введите число от 1 до 7.\n";
+            std::cin.clear();
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+        }
+        else if (day < 1 || day > 7) {
+            std::cout << "ОШИБКА: День недели должен строго лежать в диапазоне [1, 7]!\n";
+        }
+        else {
+            break;
+        }
+    }
+
+    // 3. Расчет базовой стоимости
+    double price = 0.0;
+
+    if (age < 7) {
+        price = 0.0; // Дети до 7 лет бесплатно
+    }
+    else if (age >= 7 && age <= 18) {
+        price = 200.0;
+    }
+    else if (age > 18 && age <= 65) {
+        price = 500.0;
+    }
+    else { // age > 65
+        price = 250.0;
+    }
+
+    // 4. Применение наценки за выходные дни (Суббота = 6, Воскресенье = 7)
+    if (day == 6 || day == 7) {
+        price *= 1.2; // +20% к стоимости
+        std::cout << "(Применена наценка 20% за выходной день)\n";
+    }
+
+    std::cout << "Итоговая цена билета: " << price << " руб.\n";
+
+    return 0;
+}
