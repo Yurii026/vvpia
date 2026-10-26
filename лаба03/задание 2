@@ -1,0 +1,68 @@
+#include <iostream>
+#include <limits>
+
+int main() {
+    setlocale(LC_ALL, "ru");
+    int age;
+    char gender;
+
+    std::cout << "--- СРЕДНИЙ УРОВЕНЬ (Определение категории по полу и возрасту) ---\n";
+
+    // 1. Безопасный ввод возраста
+    while (true) {
+        std::cout << "Введите возраст: ";
+        std::cin >> age;
+
+        if (std::cin.fail()) {
+            std::cout << "ОШИБКА: Введите целое число!\n";
+            std::cin.clear();
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+        }
+        else if (age < 0 || age > 130) {
+            std::cout << "ОШИБКА: Возраст должен быть в диапазоне от 0 до 130 лет!\n";
+        }
+        else {
+            break;
+        }
+    }
+
+    // 2. Безопасный ввод пола
+    while (true) {
+        std::cout << "Введите пол (M - мужской, F - женский): ";
+        std::cin >> gender;
+
+        if (gender == 'M' || gender == 'm') {
+            gender = 'M';
+            break;
+        }
+        else if (gender == 'F' || gender == 'f') {
+            gender = 'F';
+            break;
+        }
+        else {
+            std::cout << "ОШИБКА: Неверный символ пола! Используйте только M или F.\n";
+            std::cin.clear();
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+        }
+    }
+
+    // 3. Логика ветвления
+    if (gender == 'M') {
+        if (age < 18) {
+            std::cout << "Результат: юноша\n";
+        }
+        else {
+            std::cout << "Результат: мужчина\n";
+        }
+    }
+    else { // gender == 'F'
+        if (age < 18) {
+            std::cout << "Результат: девушка\n";
+        }
+        else {
+            std::cout << "Результат: женщина\n";
+        }
+    }
+
+    return 0;
+}
